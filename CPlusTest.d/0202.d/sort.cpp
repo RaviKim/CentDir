@@ -53,7 +53,7 @@ int main()
 
 ///////////////////////////////////////////////////////
 //
-//	Sort and point using bu iterator 
+//	Sort and point using by iterator 
 //	
 //	When finish sorting jobs, input sort parameter in
 //	memari[cnt] parameters
