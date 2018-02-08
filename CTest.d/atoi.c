@@ -74,8 +74,8 @@ int main(){
 #include <string.h>
 
 int main(){
-	char arr1[20]={0,};
-	int result = 0;
+	char arr1[20]	=	{0,};
+	int result 		=	 0;
 	int len, cnt;
 	char* arr2[20]={NULL,};
 
