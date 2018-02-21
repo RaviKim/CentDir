@@ -1,0 +1,13 @@
+CC	=	g++
+CFLAGS	=	-W	-WALL
+TARGET	=	diary_exe
+OBJECTS = *.o
+
+all : $(TARGET)
+$(TARGET)	: $(OBJECTS)
+		$(CC) $(CFLAGS) -o $@ $^
+
+clean : 
+rm *.o diary_exe
+
+
