@@ -29,6 +29,7 @@ int main(int argc, char ** argv)
 
 	cout << a.GetData()	<<	endl;
 	cout << b.GetData()	<<	endl;
-
+	for(int i =0 ; i< 10; i++)
+		cout << i << endl;
 	return 0;
 }
