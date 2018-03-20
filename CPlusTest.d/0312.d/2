@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+void ClockCheck(int a, int b, int c)
+{
+	int cM = c%60; // minute
+	int cH = c/60; // Hour
+	
+	if( b + cM > 59 )
+	{
+		a + 1;
+	}
+
+	if( a + cH > 24)
+	{
+		a = (a + cH) -24;
+	}
+}
+	
+	
+	
+	
+	
+
+int main(void)
+{
+	int Hour;	// A
+	int minute;	// B
+
+	int CookingTime; 	// C
+
+	cin >> Hour >> minute ;
+	cin >> CookingTime;
+
+	if(CookingTime > 1001 || CookingTime <0)
+		cout << "Input Right number " << endl;
+
+	ClockCheck(Hour, minute, CookingTime);
+}
