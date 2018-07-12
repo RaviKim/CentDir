@@ -9,7 +9,7 @@ int	iCount = 1;
 char soundArray[20];
 char printArray[120] = {0,};
 
-void MyJobFunc(char* soundArray, int hiStick, int* inputLocation);
+void MyJobFunc(char* soundArray, int hiStick, int inputLocation[]);
 
 int main(void){
 	cin >> testCase;
@@ -23,7 +23,7 @@ int main(void){
 		scanf("%d", inputLocation);
 
 		cout << inputLocation;
-		MyJobFunc(soundArray, hiStick, inputLocation); 
+		MyJobFunc(soundArray, hiStick, inputLocation[]); 
 		
 		cout << "#" << iCount++ <<" ";
 		cout << printArray << endl;
@@ -37,8 +37,8 @@ int main(void){
 }
 
 
-void MyJobFunc(char* soundArray, int hiStick, int* inputLocation){
+void MyJobFunc(char* soundArray, int hiStick, int inputLocation[]){
 	cout << inputLocation;
-
+	
 
 };
