@@ -2,7 +2,7 @@
 #include <string.h>
 
 #define BK 10
-#define SL 1
+#define SL 3
 
 int hashtable[BK][SL];
 
@@ -14,16 +14,22 @@ int hash(int key){
 void AddKey(int key){
 	int bucket;
 	bucket = hash(key);
-
-	if(	hashtable[bucket][0] 	==	0){
-		hashtable[bucket][0]	=	key;
+	for(int i = 0; i < SL; i++)
+	if(	hashtable[bucket][i] 	==	0){
+		hashtable[bucket][i]	=	key;
+		break;
 	}
 }
 
 bool FindKey(int key){
-	int bucket;
+	int bucket,i;
 	bucket = hash(key);
-	return (hashtable[bucket][0]	==	key);
+	for(i = 0; i < SL; i++){
+		if(hashtable[bucket][i] == key){
+			return true;
+		}
+	}
+		return false;
 }
 
 int main(void){
