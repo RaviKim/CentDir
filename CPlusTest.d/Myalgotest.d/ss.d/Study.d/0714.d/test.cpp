@@ -1,5 +1,7 @@
 #include <iostream>
 #include <stdio.h>
+#include <algorithm>
+#include <deque>
 
 using namespace std;
 #define MaxSize 8
@@ -25,8 +27,10 @@ void initial_Map(int M){
 	}
 }
 
-void GameStart(){
-	if()
+void Searching(){
+	int *QueueArray = new int[65];
+	deque <int> deq;	
+
 }
 
 bool check(int a, int b, int stone, int arraySize){
