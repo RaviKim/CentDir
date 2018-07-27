@@ -1,16 +1,17 @@
 //////////////////////:////////
 // Samsung Sw Expert Academy
 // No. 4530
-// <Author>     RaviKim
-// <Date>       180721
-// <Version>    1.0.4
-// <Modify> 
-//  1.0.0 : Posible TestCase a single digit (ex, 1-10)
-//  1.0.1 : Posible TestCase intSize digit
-//  1.0.2 : Modify Runtime Error
-//  1.0.3 : Fix Static Variable 
-//  1.0.4 : Modify Data Type Size
+// <Author> 	RaviKim
+// <Date>		180721
+// <Version> 	1.0.4
+// <Modify>	
+//	1.0.0 : Posible TestCase a single digit (ex, 1-10)
+//	1.0.1 : Posible TestCase intSize digit
+//	1.0.2 : Modify Runtime Error
+//	1.0.3 : Fix Static Variable 
+//	1.0.4 : Modify Data Type Size
 ///////////////////////////////
+
 
 
 #include <iostream>
@@ -25,7 +26,7 @@ using namespace std;
 int TestCase = 0; 	// 전체 반복.
 double A, B = 0; 	// 층 15자리.
 
-int CheckFunc(int number);
+double CheckFunc(double number);
 static int counterA , counterB = 0;
 
 
