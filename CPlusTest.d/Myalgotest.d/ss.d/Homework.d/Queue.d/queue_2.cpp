@@ -1,22 +1,21 @@
 /////////////////////////////////////////////////////////////////////////////////////
-// <<HomeWork - Make Stack >>
+// <<HomeWork - Make queue >>
 //
-// <Description>	Make Stack DataStructure
+// <Description>	Make queue DataStructure
 // <Function List> 
 //
 //
 // <Issue>			ver			issue
 // 					----------------------------------------------------------------
-// 					1.0.0		Make Stack's Basic Design Foundation.
-// 								Must To Fix Array Parameter '0' when PrintStack() 
-// 
+// 					1.0.0		Make queue's Basic Design Foundation.
+//					1.0.1		Optimization 
 //
 //
 //
 // <History Info> 	Ver 		Date			Comment				Owner			
 //					----------------------------------------------------------------
-//					1.0.0		18.07.26		Create				RaviKim
-//					1.0.1		18.07.27		Modify PrintStack	RaviKim
+//					1.0.0		18.07.27		Create				RaviKim
+//					1.0.1		18.07.27		Optimize			RaviKim
 //
 //
 /////////////////////////////////////////////////////////////////////////////////////
@@ -35,23 +34,23 @@ void Push(int inputNum);
 void Pop();
 void Empty();
 void Delete();
-void PrintStack();
+void Printqueue();
 int Size();
 void SearchNum(int SearchNum);
 
 int CommandNum = 0;
 int ArraySize = 0;
-int * StackArray = new int[100];
+int * queueArray = new int[100];
 
 
 int main(void){
-while(1){
-	PrintCommand();
-	cin >>CommandNum;
-	SwitchCommand(CommandNum);
-}
-delete[] StackArray;
-return 0;
+	while(1){
+		PrintCommand();
+		cin >>CommandNum;
+		SwitchCommand(CommandNum);
+	}
+	delete[] queueArray;
+	return 0;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -75,10 +74,10 @@ void PrintCommand(){
 	cout << "1. Push" 				<< endl;
 	cout << "2. Pop"				<< endl;
 	cout << "3. Empty_Check"		<< endl;
-	cout << "4. Stack_Clear"		<< endl;
-	cout << "5. Stack_Size"			<< endl;
+	cout << "4. queue_Clear"		<< endl;
+	cout << "5. queue_Size"			<< endl;
 	cout << "6. SearchNum"			<< endl;
-	cout << "7. PrintStack"			<< endl;
+	cout << "7. Printqueue"			<< endl;
 	cout << "-----------------------------" << endl;
 	cout << "Input Command Number : ";
 }
@@ -129,7 +128,7 @@ void SwitchCommand(int Command){
 			break;
 
 		case 7:
-			PrintStack();
+			Printqueue();
 			break;
 
 		default:
@@ -145,31 +144,24 @@ void SwitchCommand(int Command){
 ////////////////////////////////////////////////////////////////////////////////////
 // [[ Push ]]
 //
-// <Description>	A Function to input Number in StackArray
+// <Description>	A Function to input Number in queueArray
 // <Return>		    None
 // <Parameter>		inputNum	: That is input parameter to Array
 //
 // <History Info> 	Ver 		Date			Comment				Owner
 //					----------------------------------------------------------------
-//					1.0.0		18.07.26		Create				RaviKim
-//					1.0.1		18.07.27		Modify				RaviKim
+//					1.0.0		18.07.27		Create				RaviKim
 /////////////////////////////////////////////////////////////////////////////////////
 
 void Push(int inputNum){
-	if(Size() ==0){
-		StackArray[0] = inputNum;
-//		StackArray[1] = NULL;	//180727 RaviKim Make wall
-	}
-	else if(Size() > 0){	
-	int pushCount = Size();
-	StackArray[pushCount] = inputNum;// 0727 ing...
-}
+	int pushCount	=	Size();
+	(Size() == 0) ? queueArray[0] = inputNum : queueArray[pushCount] = inputNum;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
 // [[ Pop ]]
 //
-// <Description>	A Function to Pop Number in StackArray
+// <Description>	A Function to Pop Number in queueArray
 // <Return>		    None
 // <Parameter>	    None
 //
@@ -180,16 +172,18 @@ void Push(int inputNum){
 /////////////////////////////////////////////////////////////////////////////////////
 
 void Pop(){
-int popCount = Size();
-if(StackArray[0] != 0)
-	StackArray[popCount-1] = 0;	// Modify RVKim , [popCount] -> [popCount-1]
-
+	int popCount = Size();
+	if(queueArray[0] != 0)
+		for(int i = 0; i < popCount; i++){
+			queueArray[i] = queueArray[i+1];
+		}
+	queueArray[popCount] = 0;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
 // [[ Delete ]]
 //
-// <Description>	A Function to Stack Mem Clear
+// <Description>	A Function to queue Mem Clear
 // <Return>		    None
 // <Parameter>	    None
 //
@@ -200,7 +194,7 @@ if(StackArray[0] != 0)
 /////////////////////////////////////////////////////////////////////////////////////
 
 void Delete(){
-	
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -218,19 +212,19 @@ void Delete(){
 void SearchNum(int SearchNum){
 	int SearchCheckCnt = 0;
 	for(int i = 0; i < Size(); i++){
-		if(StackArray[i] == SearchNum){
+		if(queueArray[i] == SearchNum){
 			cout << "Find SearchNum in " << i+1 << " position" << endl;
 			SearchCheckCnt++;
 		}
 	}
-	if(SearchCheckCnt ==0) cout << "Can't Find Number What you want " << endl;
+	if(SearchCheckCnt == 0) cout << "Can't Find Number What you want " << endl;
 
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
 // [[ Empty ]]
 //
-// <Description>	Check Stack Array Null 
+// <Description>	Check queue Array Null 
 // <Return>		   	None
 // <Parameter>	    None
 //
@@ -242,19 +236,19 @@ void SearchNum(int SearchNum){
 
 void Empty(){
 	int	EmptyCount = Size();
-	if(StackArray[0] == 0 && StackArray[EmptyCount] == 0){
-		cout << "Stack Array is Empty" << endl;
+	if(queueArray[0] == 0 && queueArray[EmptyCount] == 0){
+		cout << "queue Array is Empty" << endl;
 	}
 	else
-		cout << "Stack Array is not Empty"<< endl;
-		cout << "Stack have : " << EmptyCount<< endl;
+		cout << "queue Array is not Empty"<< endl;
+	cout << "queue have : " << EmptyCount<< endl;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
 // [[ Size ]]
 //
-// <Description>	Check Stack Array Size. 
-// <Return>		   	Stack Size
+// <Description>	Check queue Array Size. 
+// <Return>		   	queue Size
 // <Parameter>	    None
 //
 // <History Info> 	Ver 		Date			Comment				Owner
@@ -266,16 +260,16 @@ void Empty(){
 int Size(){
 	ArraySize = 0;
 	for(int i = 0; i < 100; i++){
-		if(StackArray[i] !=0)	ArraySize++;
+		if(queueArray[i] !=0)	ArraySize++;
 	}
 	return ArraySize;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
-// [[ PrintStack ]]
+// [[ Printqueue ]]
 //
-// <Description>	Print present Stack Array.
-// <Return>		   	None. Only Print Stack Array.
+// <Description>	Print present queue Array.
+// <Return>		   	None. Only Print queue Array.
 // <Parameter>	    None.
 //
 // <History Info> 	Ver 		Date			Comment				Owner
@@ -284,11 +278,11 @@ int Size(){
 //					1.0.1		18.07.27		Modify				RaviKim
 /////////////////////////////////////////////////////////////////////////////////////
 
-void PrintStack(){
+void Printqueue(){
 	int ArrayCount = Size();
-	
+
 	for( int i = 0; i < ArrayCount; i++){	// RaviKim Modify 0727."<=" -> "<"
-	cout << StackArray[i] << "|";
+		cout << queueArray[i] << "|";
 	}
 
 	cout << endl;
